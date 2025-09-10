@@ -16,6 +16,13 @@ resource "aws_iam_role" "ec2_role" {
     })
 }
 
+// attach ssmcore
+resource "aws_iam_role_policy_attachment" "ssmcore" {
+    for_each = var.items
+    role = aws_iam_role.ec2_role[each.key].name
+    policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
+
 resource "aws_iam_instance_profile" "ec2_profile" {
     for_each = var.items
 
