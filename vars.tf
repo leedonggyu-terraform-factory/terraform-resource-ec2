@@ -1,3 +1,3 @@
 variable "items" {
-  
+  type = any
 }
