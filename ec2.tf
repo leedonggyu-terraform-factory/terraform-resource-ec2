@@ -22,6 +22,8 @@ resource "aws_instance" "ec2" {
     vpc_security_group_ids = [aws_security_group.ec2[each.key].id]
     iam_instance_profile = aws_iam_instance_profile.ec2_profile[each.key].name
 
+    user_data = each.value.user_data
+
     tags = {
         Name = "${each.key}-ec2"
     }
