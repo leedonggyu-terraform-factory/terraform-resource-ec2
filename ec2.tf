@@ -22,7 +22,7 @@ resource "aws_instance" "ec2" {
     vpc_security_group_ids = [aws_security_group.ec2[each.key].id]
     iam_instance_profile = aws_iam_instance_profile.ec2_profile[each.key].name
 
-    public_ip = try(each.value.public_ip, false)
+    associate_public_ip_address = try(each.value.associate_public_ip_address, false)
 
     user_data = each.value.user_data
 
