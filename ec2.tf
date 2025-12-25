@@ -19,7 +19,7 @@ resource "aws_instance" "ec2" {
   ami                    = try(each.value.ami, data.aws_ami.ec2[each.key].id)
   instance_type          = try(each.value.instance_type, "t4g.small")
   subnet_id              = each.value.subnet_id
-  vpc_security_group_ids = [aws_security_group.ec2[each.key].id]
+  vpc_security_group_ids = [aws_security_group.ec2[each.key].id, try(each.value.common_sg_id, null)]
   iam_instance_profile   = aws_iam_instance_profile.ec2_profile[each.key].name
 
   associate_public_ip_address = try(each.value.associate_public_ip_address, false)
