@@ -30,8 +30,4 @@ resource "aws_security_group" "ec2" {
   tags = {
     Name = "${each.key}-ec2-sg"
   }
-
-  lifecycle {
-    ignore_changes = [ingress]
-  }
 }
