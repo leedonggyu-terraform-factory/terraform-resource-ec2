@@ -13,7 +13,7 @@ resource "aws_security_group" "ec2" {
       to_port     = ingress.value.to_port
       protocol    = ingress.value.protocol
       cidr_blocks = ingress.value.cidr_blocks
-      prefix_list_ids = try(ignress.value.prefix_list_ids, [])
+      prefix_list_ids = try(ingress.value.prefix_list_ids, [])
     }
   }
 
